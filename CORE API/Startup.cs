@@ -1,3 +1,6 @@
+using CORE_API.IService;
+using CORE_API.Repository.Models;
+using CORE_API.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +31,9 @@ namespace CORE_API
         {
 
             services.AddControllers();
+            services.AddScoped<IGenericService<Product>, ProductService>();
+            services.AddScoped<IGenericService<Customer>, CustomerService>();
+            services.AddScoped<IGenericService<Order>, OrderService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CORE_API", Version = "v1" });
